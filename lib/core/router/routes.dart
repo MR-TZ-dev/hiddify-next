@@ -4,7 +4,6 @@ import 'package:hiddify/core/router/app_router.dart';
 import 'package:hiddify/features/common/adaptive_root_scaffold.dart';
 import 'package:hiddify/features/config_option/overview/config_options_page.dart';
 import 'package:hiddify/features/config_option/widget/quick_settings_modal.dart';
-
 import 'package:hiddify/features/home/widget/home_page.dart';
 import 'package:hiddify/features/intro/widget/intro_page.dart';
 import 'package:hiddify/features/log/overview/logs_overview_page.dart';
@@ -13,6 +12,7 @@ import 'package:hiddify/features/profile/add/add_profile_modal.dart';
 import 'package:hiddify/features/profile/details/profile_details_page.dart';
 import 'package:hiddify/features/profile/overview/profiles_overview_page.dart';
 import 'package:hiddify/features/proxy/overview/proxies_overview_page.dart';
+import 'package:hiddify/features/rules/overview/rules_option_page.dart';
 import 'package:hiddify/features/settings/about/about_page.dart';
 import 'package:hiddify/features/settings/overview/settings_overview_page.dart';
 import 'package:hiddify/utils/utils.dart';
@@ -46,6 +46,10 @@ GlobalKey<NavigatorState>? _dynamicRootKey = useMobileRouter ? rootNavigatorKey 
         TypedGoRoute<ConfigOptionsRoute>(
           path: "config-options",
           name: ConfigOptionsRoute.name,
+        ),
+        TypedGoRoute<RulesOptionsRoute>(
+          path: "rule-options",
+          name: RulesOptionsRoute.name,
         ),
         TypedGoRoute<QuickSettingsRoute>(
           path: "quick-settings",
@@ -122,10 +126,13 @@ class MobileWrapperRoute extends ShellRouteData {
       path: "/config-options",
       name: ConfigOptionsRoute.name,
     ),
+    TypedGoRoute<RulesOptionsRoute>(
+      path: "/rule-options",
+      name: RulesOptionsRoute.name,
+    ),
     TypedGoRoute<SettingsRoute>(
       path: "/settings",
       name: SettingsRoute.name,
-      routes: [],
     ),
     TypedGoRoute<LogsOverviewRoute>(
       path: "/logs",
@@ -327,6 +334,28 @@ class ConfigOptionsRoute extends GoRouteData {
     return NoTransitionPage(
       name: name,
       child: ConfigOptionsPage(section: section),
+    );
+  }
+}
+
+class RulesOptionsRoute extends GoRouteData {
+  const RulesOptionsRoute();
+  // final String? section;
+  static const name = "Rules Options";
+
+  static final GlobalKey<NavigatorState>? $parentNavigatorKey = _dynamicRootKey;
+
+  @override
+  Page<void> buildPage(BuildContext context, GoRouterState state) {
+    if (useMobileRouter) {
+      return const MaterialPage(
+        name: name,
+        child: RulesOptionsPage(),
+      );
+    }
+    return const NoTransitionPage(
+      name: name,
+      child: RulesOptionsPage(),
     );
   }
 }

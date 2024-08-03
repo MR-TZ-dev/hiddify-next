@@ -412,5 +412,8 @@
     "warpPort": "پورت",
     "warpNoise": "تعداد نویز",
     "warpNoiseDelay": "تأخیر نویز"
+  },
+  "rule": {
+    "pageTitle": "قوانین"
   }
 }

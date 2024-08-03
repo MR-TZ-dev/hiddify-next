@@ -414,5 +414,8 @@
     "warpNoiseSize": "Noise Size",
     "warpNoiseMode": "Noise Mode",
     "warpNoiseDelay": "Noise Delay"
+  },
+  "rule": {
+    "pageTitle": "Rule Routes"
   }
 }
